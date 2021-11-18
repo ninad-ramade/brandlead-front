@@ -12,6 +12,9 @@
     display: none;
 }
 .fas {
-	margin-right:5px;
+	margin:5px;
 	cursor: pointer;
+}
+.deleted {
+	background-color: #ffaaaa;
 }

@@ -19,7 +19,10 @@ $model = new Model();
 var apiPath = '<?php echo $apiPath; ?>';
 var token = window.atob('<?php echo $authToken; ?>');
 var listMethod = '<?php echo CommonConstants::_LIST_ENDPOINT_METHOD_; ?>';
+var createMethod = '<?php echo CommonConstants::_CREATE_ENDPOINT_METHOD_; ?>';
+var updateMethod = '<?php echo CommonConstants::_UPDATE_ENDPOINT_METHOD_; ?>';
 var deleteMethod = '<?php echo CommonConstants::_DELETE_ENDPOINT_METHOD_; ?>';
+var restoreMethod = '<?php echo CommonConstants::_RESTORE_ENDPOINT_METHOD_; ?>';
 </script>
 </head>
 <body ng-app="brandlead-front" class="ng-scope" ng-controller="namesController" ng-cloak>
@@ -36,8 +39,10 @@ var deleteMethod = '<?php echo CommonConstants::_DELETE_ENDPOINT_METHOD_; ?>';
 	<div class="container">
 		<h3></h3>
         <div class="row">
-        	<label>Name</label><input type="text" id="name">
-        	<a href="javascript:void()" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add</a>
+        	<label>{{name.label}}</label><input type="text" id="name" ng-model="name.value">
+        	<a href="javascript:void(0)" class="btn btn-primary" ng-click="addName()"><i class="fas fa-user-plus"></i> Add</a>
+        	<a href="javascript:void(0)" class="btn btn-primary" ng-click="fetchTrashed()"><i class="fas fa-trash"></i> Fetch Trashed</a>
+        	<a href="javascript:void(0)" class="btn btn-primary" ng-click="fetchNames()"><i class="fas fa-check"></i> Fetch Active</a>
         </div>
         <div class="row">
         	<table class="table">
@@ -45,9 +50,9 @@ var deleteMethod = '<?php echo CommonConstants::_DELETE_ENDPOINT_METHOD_; ?>';
         			<th>Name</th>
         			<th>Actions</th>
         		</tr>
-                <tr ng-repeat="item in names track by $index">
-                	<td>{{item.name}}</td>
-                	<td><i class="fas fa-edit"></i><i class="fas fa-trash" ng-click="deleteName(item.id)"></i></td>
+                <tr ng-repeat="item in names track by $index" ng-class="item.deleted_at ? 'deleted' : ''">
+                	<td><span ng-if="!item.visible">{{item.name}}</span><span ng-if="item.visible"><input ng-model="item.name" placeholder="{{item.name}}"><i class="fas fa-check" ng-click="updateName(item.id, item.name)"></i></span></td>
+                	<td><i ng-if="item.deleted_at" title="Restore" ng-click="restoreName(item.id)" class="fas fa-trash-restore"></i><i class="fas fa-edit" title="Edit" ng-if="!item.deleted_at" ng-click="item.visible=!item.visible"></i><i class="fas fa-trash" title="Delete" ng-if="!item.deleted_at" ng-click="deleteName(item.id)"></i></td>
                 </tr>
         	</table>
       	</div>

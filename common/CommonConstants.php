@@ -10,6 +10,7 @@ abstract class CommonConstants {
     const _LIST_ENDPOINT_METHOD_ = 'GET';
     const _UPDATE_ENDPOINT_METHOD_ = 'PUT';
     const _DELETE_ENDPOINT_METHOD_ = 'DELETE';
+    const _RESTORE_ENDPOINT_METHOD_ = 'PATCH';
     
 }
 
