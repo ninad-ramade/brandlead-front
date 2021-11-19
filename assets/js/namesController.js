@@ -14,6 +14,10 @@ ang.controller('namesController', function shopController($scope, $http){
 		var trashedApiPath = apiPath + '/trashed';
 		$scope.apiRequest(trashedApiPath, listMethod, $scope.setNames, []);
 	};
+	$scope.fetchActive = function () {
+		var activeApiPath = apiPath + '/active';
+		$scope.apiRequest(activeApiPath, listMethod, $scope.setNames, []);
+	};
 	$scope.showLoader = function() {
 		document.getElementsByClassName('loader')[0].style.display = 'block';
 	};
@@ -71,7 +75,7 @@ ang.controller('namesController', function shopController($scope, $http){
 		}
 		var restoreApiPath = apiPath + '/' + id;
 		alert('Name restored successfully.');
-		$scope.apiRequest(restoreApiPath, restoreMethod, $scope.fetchTrashed, []);
+		$scope.apiRequest(restoreApiPath, restoreMethod, $scope.fetchNames, []);
 	}
 	$scope.fetchNames();
 });

@@ -41,8 +41,9 @@ var restoreMethod = '<?php echo CommonConstants::_RESTORE_ENDPOINT_METHOD_; ?>';
         <div class="row">
         	<label>{{name.label}}</label><input type="text" id="name" ng-model="name.value">
         	<a href="javascript:void(0)" class="btn btn-primary" ng-click="addName()"><i class="fas fa-user-plus"></i> Add</a>
+        	<a href="javascript:void(0)" class="btn btn-primary" ng-click="fetchNames()"><i class="fas fa-check"></i> Fetch All</a>
+        	<a href="javascript:void(0)" class="btn btn-primary" ng-click="fetchActive()"><i class="fas fa-check"></i> Fetch Active</a>
         	<a href="javascript:void(0)" class="btn btn-primary" ng-click="fetchTrashed()"><i class="fas fa-trash"></i> Fetch Trashed</a>
-        	<a href="javascript:void(0)" class="btn btn-primary" ng-click="fetchNames()"><i class="fas fa-check"></i> Fetch Active</a>
         </div>
         <div class="row">
         	<table class="table">
